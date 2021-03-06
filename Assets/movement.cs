@@ -27,16 +27,10 @@ public class movement : MonoBehaviour
     {
         if (currentwawepointindex >= waypoints.points.Length - 1 )
         {
-            EndPath();
+            Destroy(gameObject);
             return;
         }
         currentwawepointindex++;
         target = waypoints.points[currentwawepointindex];
-    }
-
-    void EndPath()
-    {
-        PlayerStats.lives--;
-        Destroy(gameObject);
     }
 }
