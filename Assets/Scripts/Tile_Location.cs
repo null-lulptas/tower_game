@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 /// <summary>
 /// For setting tile's position (grid system)
 /// </summary>
@@ -32,7 +33,28 @@ public class Tile_Location : MonoBehaviour
 
     public void Setup(Location gridPos, Vector3 worldPosition)
     {
-        this.Position = Position;
+        this.Position = gridPos;
         transform.position = worldPosition;
+
+        Level_Initiator.Instance.everyTilesLocations.Add(gridPos, this);
+
+    }
+
+    private void OnMouseOver()
+    {
+        if (Master.Instance.Button != null)
+        {
+            if (Input.GetMouseButtonDown(0))
+                PlaceTower();
+        }
+    }
+
+    private void PlaceTower()
+    {
+        GameObject tower = (GameObject)Instantiate(Master.Instance.Button.TowerPrefab, transform.position, Quaternion.identity);
+
+        tower.transform.SetParent(transform);
+
+        Master.Instance.TowerBuy();
     }
 }

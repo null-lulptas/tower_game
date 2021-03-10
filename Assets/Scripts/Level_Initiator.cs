@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Generates a map from txt, sets each tiles location (grid system)
 /// </summary>
-public class Level_Initiator : MonoBehaviour
+public class Level_Initiator : Singleton<Level_Initiator>
 {
     [SerializeField]
     private GameObject[] tiles;
@@ -88,6 +88,6 @@ public class Level_Initiator : MonoBehaviour
 
         tile.Setup(new Location(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y)));
 
-        everyTilesLocations.Add(new Location(x, y), tile);
+        
     }
 }
