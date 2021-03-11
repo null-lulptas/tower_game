@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8691532189095814379}
   - component: {fileID: 8691532189095814378}
+  - component: {fileID: -271600236219646734}
   m_Layer: 0
   m_Name: TurretIdle
   m_TagString: Untagged
@@ -81,3 +82,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-271600236219646734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691532189095814376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734ba301dfebc69478a152859a47ac1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
+  enemyTag: Enemy
