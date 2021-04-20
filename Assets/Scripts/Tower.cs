@@ -5,9 +5,22 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     private Transform target;
-    public float range = 2f;
-    public string enemyTag = "Enemy";
 
+    [Header("Attributes")]
+    public float range = 2f;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
+    
+
+    [Header("Unity Setup Fields")]
+    public string enemyTag = "Enemy";
+    public Transform partToRotate;
+    public float turnSpeed = 10f;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +43,7 @@ public class Tower : MonoBehaviour
         if(nearestEnemy != null && shortestDistance <= range) {
             target = nearestEnemy.transform;
             Debug.Log("Nusitaike:");
+            
         } else {
             target = null;
             Debug.Log("Nera");
@@ -41,6 +55,19 @@ public class Tower : MonoBehaviour
     {
         if(target == null)
         return;
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+        fireCountdown -= Time.deltaTime;
+    }
+    void Shoot()
+    {
+       GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Bullet bullet = bulletGo.GetComponent<Bullet>();
+        if (bullet != null)
+            bullet.Seek(target);
     }
 
     void OnDrawGizmosSelected() {
