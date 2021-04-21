@@ -10,8 +10,8 @@ public class Tower : MonoBehaviour
     public float range = 2f;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
-
-    
+    [SerializeField]
+    private int damage;    
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -21,6 +21,8 @@ public class Tower : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     
+    public int Damage{get{ return damage; }}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,11 @@ public class Tower : MonoBehaviour
 
         if(nearestEnemy != null && shortestDistance <= range) {
             target = nearestEnemy.transform;
-            Debug.Log("Nusitaike:");
+            //Debug.Log("Nusitaike:");
             
         } else {
             target = null;
-            Debug.Log("Nera");
+            //Debug.Log("Nera");
         }
     }
 
@@ -64,10 +66,12 @@ public class Tower : MonoBehaviour
     }
     void Shoot()
     {
-       GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
+        GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
         if (bullet != null)
+        {
             bullet.Seek(target);
+        }
     }
 
     void OnDrawGizmosSelected() {
