@@ -43,5 +43,7 @@ public class Enemy : MonoBehaviour
 		Destroy(effect, 5f);
 
 		Destroy(gameObject);
+		PlayerStats.score = PlayerStats.score + 10;
+		PlayerStats.money = PlayerStats.money + 1;
 	}
 }
