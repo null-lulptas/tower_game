@@ -11,7 +11,8 @@ public class Tower : MonoBehaviour
     public float fireRate = 1f;
     private float fireCountdown = 0f;
     [SerializeField]
-    private int damage;    
+    public static int damage;
+    public int Sdamage;
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -26,6 +27,7 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage = Sdamage;
         InvokeRepeating ("UpdateTarget", 0f, 0.5f);
     }
 
@@ -68,6 +70,8 @@ public class Tower : MonoBehaviour
     {
         GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, transform.position, transform.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
+        //bullet.damage = Sdamage;
+       // Debug.Log("bullet.damage: " + bullet.damage);
         if (bullet != null)
         {
             bullet.Seek(target);

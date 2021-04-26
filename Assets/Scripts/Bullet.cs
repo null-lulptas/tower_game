@@ -4,9 +4,7 @@ public class Bullet : MonoBehaviour
 {
     private Transform target;
     public float speed =70f;
-
-    private int damage = 50;
-
+    public int damage = 200;
     public GameObject ImpactEffect;
     public void Seek(Transform _target)
     {
@@ -15,7 +13,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        damage = 200;
     }
 
     // Update is called once per frame
@@ -51,5 +49,6 @@ public class Bullet : MonoBehaviour
 
         if (e != null)
             e.TakeDamage(damage);
+            Debug.Log("damage: " + damage);
     }
 }
