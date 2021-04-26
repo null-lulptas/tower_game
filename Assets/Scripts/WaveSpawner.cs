@@ -15,8 +15,11 @@ public class WaveSpawner : MonoBehaviour
         if (countdown <= 0f)
 
         {
-            StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
+            if (PlayerStats.lives > 0)
+            {
+                StartCoroutine(SpawnWave());
+                countdown = timeBetweenWaves;
+            }
         }
         countdown -= Time.deltaTime;
     }
