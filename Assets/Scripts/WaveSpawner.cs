@@ -12,6 +12,8 @@ public class WaveSpawner : MonoBehaviour
     private int waveNumber = 0;
     void Update()
     {
+        if(PlayerStats.lives <= 0) DestroyAllEnemies();
+
         if (countdown <= 0f)
 
         {
@@ -20,6 +22,7 @@ public class WaveSpawner : MonoBehaviour
                 StartCoroutine(SpawnWave());
                 countdown = timeBetweenWaves;
             }
+
         }
         countdown -= Time.deltaTime;
     }
@@ -39,4 +42,13 @@ public class WaveSpawner : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, 90, 0);
         Instantiate(enemyPrefab, spawnPoint.position, rotation);        
     }
+ 
+ void DestroyAllEnemies(){
+ 
+    GameObject[] enemies =  GameObject.FindGameObjectsWithTag ("Enemy");
+ 
+     foreach(GameObject enemy in enemies)
+         Destroy(enemy);
+ 
+ }
 }
