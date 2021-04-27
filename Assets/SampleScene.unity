@@ -1206,9 +1206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '20 lives
-
-    20 score'
+  m_Text: 20 lives
 --- !u!222 &830688651
 CanvasRenderer:
   m_ObjectHideFlags: 0
