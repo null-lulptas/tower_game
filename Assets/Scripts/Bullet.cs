@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Bullet : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float speed =70f;
     public int damage = 200;
     public GameObject ImpactEffect;
+    public AudioSource bulletImpact;
     public void Seek(Transform _target)
     {
         target = _target;
@@ -14,6 +16,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         damage = 200;
+        bulletImpact = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,9 +40,14 @@ public class Bullet : MonoBehaviour
     }
     void HitTarget()
     {
+       
         GameObject effectIns = (GameObject)Instantiate(ImpactEffect, transform.position, transform.rotation);
+        
         Destroy(effectIns, 2f);
-        Damage(target);      
+        
+        Damage(target);
+        bulletImpact.Play();
+       // SoundManagerScript.PlaySound("BulletImpactSound");
         Destroy(gameObject);
     }
 
