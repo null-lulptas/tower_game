@@ -8,6 +8,8 @@ public class Level_Initiator : Singleton<Level_Initiator>
 {
     [SerializeField]
     private GameObject[] tiles;
+    [SerializeField]
+    private TextAsset levelsource;
 
     //Dictionary of every tiles' locations
     public Dictionary<Location, Tile_Location> everyTilesLocations { get; set; }
@@ -49,6 +51,7 @@ public class Level_Initiator : Singleton<Level_Initiator>
                 Place(tileRow[x],x, y, worldStart);
             }
         }
+        
     }
 
     /// <summary>
@@ -57,10 +60,8 @@ public class Level_Initiator : Singleton<Level_Initiator>
     /// </summary>
     /// <returns>string array of map's horizontal lines</returns>
     private string[] TxtToLevel()
-    {
-        TextAsset data = Resources.Load("Level1") as TextAsset;
-
-        string tmp = data.text.Replace(Environment.NewLine, string.Empty);
+    {        
+        string tmp = levelsource.text.Replace(Environment.NewLine, string.Empty);
 
         return tmp.Split('|');
     }
