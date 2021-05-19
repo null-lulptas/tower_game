@@ -12,7 +12,7 @@ public class ScoreUI : MonoBehaviour
     void Update()
     {
 
-        scoreText.text = PlayerStats.score + " SCORE";
+        scoreText.text = "SCORE: "+PlayerStats.score;
         
     }
 }

@@ -5,19 +5,33 @@ using UnityEngine.UI;
 
 public class livesUI : MonoBehaviour
 {
-    public Text livesText;
-
-
-    // Update is called once per frame
+    public Sprite[] sprites;
+    public int fullHP;
     void Update()
     {
-        if (PlayerStats.lives <= 0)
+        Image image = gameObject.GetComponent<Image>();
+        if (fullHP == PlayerStats.lives)
         {
-            livesText.text = 0 + " LIVES";
+            image.sprite = sprites[0];
+        }
+        else if (PlayerStats.lives <= fullHP * 0.9 
+            && PlayerStats.lives >= fullHP * 0.5)
+        {
+            image.sprite = sprites[1];
+        }
+        else if (PlayerStats.lives < fullHP * 0.5
+            && PlayerStats.lives >= fullHP * 0.25)
+        {
+            image.sprite = sprites[2];
+        }
+        else if (PlayerStats.lives < fullHP * 0.25
+            && PlayerStats.lives != 0)
+        {
+            image.sprite = sprites[3];
         }
         else
         {
-            livesText.text = PlayerStats.lives + " LIVES";
+            image.sprite = sprites[4];
         }
     }
 }

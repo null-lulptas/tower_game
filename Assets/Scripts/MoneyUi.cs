@@ -12,7 +12,7 @@ public class MoneyUi : MonoBehaviour
     void Update()
     {
 
-        MoneyText.text = PlayerStats.money + " DogeCoins";
+        MoneyText.text = PlayerStats.money+"";
 
     }
 }

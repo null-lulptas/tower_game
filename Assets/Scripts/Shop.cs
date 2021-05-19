@@ -5,7 +5,6 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public void PurchaseTurert()
-    {
-        Debug.Log("Pasirinkta");
+    {       
     }
 }
