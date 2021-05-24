@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public GameObject pauseMenuUI;
+
+    public static int enemeiesAlive = 0;
+    public Wave[] waves;
     public Transform spawnPoint;
     public float timeBetweenWaves = 7f;
     private float countdown = 2f;
-
+    public GameManager gameManager;
     private int waveNumber = 0;
     void Update()
     {
-        if(PlayerStats.lives <= 0) DestroyAllEnemies();
+        Debug.Log("ALIVE" + enemeiesAlive);
+        if (enemeiesAlive > 0)
+        {
+            return;
+        }
+
+        Debug.Log(waveNumber);
+        if (waveNumber == waves.Length)
+        {            
+            gameManager.GameWon();
+            DestroyAllEnemies();
+            this.enabled = false;
+        }
 
         if (countdown <= 0f)
 
@@ -21,6 +36,7 @@ public class WaveSpawner : MonoBehaviour
             {
                 StartCoroutine(SpawnWave());
                 countdown = timeBetweenWaves;
+                return;
             }
 
         }
@@ -28,19 +44,21 @@ public class WaveSpawner : MonoBehaviour
     }
     IEnumerator SpawnWave()
     {
-        //Debug.Log("Wave Incomming!");
-        waveNumber++;
-        for (int i = 0; i < waveNumber; i++)
+        Wave wave = waves[waveNumber];
+        enemeiesAlive = wave.count;
+
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            SpawnEnemy(wave.enemy);
+            yield return new WaitForSeconds(1/wave.rate);
         }
-       
+        waveNumber++;       
     }
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject enemy)
     {
         Quaternion rotation = Quaternion.Euler(0, 90, 0);
-        Instantiate(enemyPrefab, spawnPoint.position, rotation);        
+        Instantiate(enemy, spawnPoint.position, rotation);
+        enemeiesAlive++;
     }
  
  void DestroyAllEnemies(){
@@ -49,6 +67,7 @@ public class WaveSpawner : MonoBehaviour
  
      foreach(GameObject enemy in enemies)
          Destroy(enemy);
- 
+
+        enemeiesAlive = 0;
  }
 }

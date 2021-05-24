@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     private Transform target;
     public float speed =70f;
     public int damage = 50;
+    public float explosionradius = 0f;
     public GameObject ImpactEffect;
     public AudioSource bulletImpact;
     public void Seek(Transform _target)
@@ -15,7 +16,6 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damage = 50;
         bulletImpact = GetComponent<AudioSource>();
     }
 
@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
             return;
         }
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-
+        transform.LookAt(target);
     }
     void HitTarget()
     {
@@ -45,9 +45,19 @@ public class Bullet : MonoBehaviour
         
         Destroy(effectIns, 2f);
         
-        Damage(target);
-        bulletImpact.Play();
-       // SoundManagerScript.PlaySound("BulletImpactSound");
+        if(explosionradius > 0f)
+        {
+            Explode();
+        }
+        else 
+        {
+            Damage(target);
+            bulletImpact.Play();
+        }
+
+        //Damage(target);
+        //bulletImpact.Play();
+        //SoundManagerScript.PlaySound("BulletImpactSound");
         Destroy(gameObject);
     }
 
@@ -58,5 +68,17 @@ public class Bullet : MonoBehaviour
         if (e != null)
             e.TakeDamage(damage);
            // Debug.Log("damage: " + damage);
+    }
+
+    void Explode()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionradius);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.tag == "Enemy")
+            {
+                Damage(collider.transform);
+            }
+        }
     }
 }

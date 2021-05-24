@@ -37,6 +37,7 @@ public class movement : MonoBehaviour
     void EndPath()
     {
         PlayerStats.lives--;
-        Destroy(gameObject);
+        WaveSpawner.enemeiesAlive--;
+        Destroy(gameObject);        
     }
 }

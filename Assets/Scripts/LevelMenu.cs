@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
-{    
+{
     public void Play(string level)
     {
         SceneManager.LoadScene(level);

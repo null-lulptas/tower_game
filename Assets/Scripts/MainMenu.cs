@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public string levelToLoad = "SampleScene";
-   public void Play()
+    public void Play()
     {
+        string levelToLoad = "LevelSelect";
+        SceneManager.LoadScene(levelToLoad);
+    }
+    public void Options()
+    {
+        string levelToLoad = "Options";
         SceneManager.LoadScene(levelToLoad);
     }
     public void Exit()

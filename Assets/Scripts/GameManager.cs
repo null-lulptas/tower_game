@@ -5,36 +5,35 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private bool GameEnded = false;
-    public AudioSource backgroundmusic;
-    private float musicVolume = 1f;
+    public GameObject gameoverui;
+    public GameObject gamewonui;
     // Update is called once per frame
     void Start()
     {
-        backgroundmusic = GetComponent<AudioSource>();
-        backgroundmusic.Play();
 
     }
     void Update()
     {
         if (GameEnded)
-        {
-            backgroundmusic.Play();           
+        {            
             return;
         }
         if (PlayerStats.lives <= 0)
         {
-            backgroundmusic.Stop();
+            soundManager.Instance.PlayGameOver();
             EndGame();
         }
-        backgroundmusic.volume = musicVolume;
     }
     void EndGame()
     {
         GameEnded = true;
-        Debug.Log("Game Over");
+        gameoverui.SetActive(true);
+
     }
-    public void updateVolume(float volume)
+
+    public void GameWon()
     {
-        musicVolume = volume;
+        GameEnded = true;
+        gamewonui.SetActive(true);
     }
 }

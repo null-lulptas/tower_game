@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Master.cs" />
     <Compile Include="Assets\Scripts\MoneyUi.cs" />
+    <Compile Include="Assets\Scripts\PauseButtonMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\ScoreUI.cs" />
     <Compile Include="Assets\Scripts\Shop.cs" />
@@ -81,9 +82,11 @@
     <Compile Include="Assets\Scripts\Tile_Location.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
     <Compile Include="Assets\Scripts\TowerBuyButton.cs" />
+    <Compile Include="Assets\Scripts\Wave.cs" />
     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\livesUI.cs" />
     <Compile Include="Assets\Scripts\movement.cs" />
+    <Compile Include="Assets\Scripts\soundManager.cs" />
     <Compile Include="Assets\Scripts\waypoints.cs" />
     <None Include="Assets\Resources\Level1.txt" />
     <None Include="Assets\Resources\Level3.txt" />

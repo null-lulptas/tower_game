@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-
-	public float startHealth = 1;
+	public float startHealth;
 	private float health;
 
 	public int worth = 50;
@@ -26,7 +25,7 @@ public class Enemy : MonoBehaviour
 	public void TakeDamage(float amount)
 	{
 		health = health - amount;
-		Debug.Log(amount);
+
 
 		healthBar.fillAmount = health / startHealth;
 
@@ -42,7 +41,7 @@ public class Enemy : MonoBehaviour
 
 		GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
 		Destroy(effect, 5f);
-
+		WaveSpawner.enemeiesAlive--;
 		Destroy(gameObject);
 		PlayerStats.score = PlayerStats.score + 10;
 		PlayerStats.money = PlayerStats.money + 1;
