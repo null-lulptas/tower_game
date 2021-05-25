@@ -82,4 +82,9 @@ public class Tower : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    public void Select()
+    {        
+
+    }
 }

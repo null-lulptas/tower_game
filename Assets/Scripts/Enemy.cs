@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
 		Destroy(effect, 5f);
 		WaveSpawner.enemeiesAlive--;
 		Destroy(gameObject);
-		PlayerStats.score = PlayerStats.score + 10;
+		PlayerStats.score = PlayerStats.score + worth;
 		PlayerStats.money = PlayerStats.money + 1;
 	}
 }

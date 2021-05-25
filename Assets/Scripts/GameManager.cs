@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         }
         if (PlayerStats.lives <= 0)
         {
-            soundManager.Instance.PlayGameOver();
+            soundManager.Instance.PlayGameOver();           
             EndGame();
         }
     }
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         GameEnded = true;
         gameoverui.SetActive(true);
-
+        Time.timeScale = 0f;
     }
 
     public void GameWon()

@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 5321516167623806800}
   - component: {fileID: 744233375}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_light
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  worth: 50
+  worth: 10
   deathEffect: {fileID: 1323533732242599100, guid: 87151501b0434464cb198978c212a0f9,
     type: 3}
   healthBar: {fileID: 336850407}

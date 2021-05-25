@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 200
-  worth: 100
+  worth: 40
   deathEffect: {fileID: 1323533732242599100, guid: 04cea85f9d073f147b9b66c341f0672a,
     type: 3}
   healthBar: {fileID: 336850407}

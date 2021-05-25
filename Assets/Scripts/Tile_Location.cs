@@ -8,6 +8,10 @@ using UnityEngine.EventSystems;
 public class Tile_Location : MonoBehaviour
 {   
     public Location Position { get; private set; }
+
+    public bool IsEmpty { get; set; }
+
+    private Tower myTower;
     /// <summary>
     /// Gets tile's center
     /// </summary>
@@ -43,9 +47,22 @@ public class Tile_Location : MonoBehaviour
     private void OnMouseOver()
     {
         if (Master.Instance.Button != null)
-        {
+        {            
             if (Input.GetMouseButtonDown(0))
                 PlaceTower();
+        }
+        else if(!EventSystem.current.IsPointerOverGameObject() 
+            && Master.Instance.Button == null
+            && Input.GetMouseButtonDown(0))
+        { 
+            if(myTower != null)
+            {
+                Master.Instance.SelectTower(myTower);
+            }
+            else
+            {
+                Master.Instance.DeselectTower();
+            }
         }
     }
 
@@ -55,7 +72,7 @@ public class Tile_Location : MonoBehaviour
         GameObject tower = (GameObject)Instantiate(Master.Instance.Button.TowerPrefab, transform.position, Quaternion.identity);
 
         tower.transform.SetParent(transform);
-
+        this.myTower = tower.transform.GetComponent<Tower>();
         Master.Instance.TowerBuy();
         PlayerStats.money = PlayerStats.money - 3;
     }

@@ -15,7 +15,7 @@ public class WaveSpawner : MonoBehaviour
     private int waveNumber = 0;
     void Update()
     {
-        Debug.Log("ALIVE" + enemeiesAlive);
+        //Debug.Log("ALIVE" + enemeiesAlive);
         if (enemeiesAlive > 0)
         {
             return;
