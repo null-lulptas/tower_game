@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -9,38 +10,34 @@ public class WaveSpawner : MonoBehaviour
     public static int enemeiesAlive = 0;
     public Wave[] waves;
     public Transform spawnPoint;
-    public float timeBetweenWaves = 7f;
-    private float countdown = 2f;
+    public float timeBetweenWaves;
+    private float countdown;
     public GameManager gameManager;
     private int waveNumber = 0;
+    public Text nextWaveText;
     void Update()
     {
-        //Debug.Log("ALIVE" + enemeiesAlive);
         if (enemeiesAlive > 0)
         {
             return;
         }
 
-        Debug.Log(waveNumber);
         if (waveNumber == waves.Length)
         {            
             gameManager.GameWon();
-            DestroyAllEnemies();
             this.enabled = false;
         }
 
         if (countdown <= 0f)
-
         {
-            if (PlayerStats.lives > 0)
-            {
-                StartCoroutine(SpawnWave());
-                countdown = timeBetweenWaves;
-                return;
-            }
-
+            StartCoroutine(SpawnWave());
+            countdown = timeBetweenWaves;
+            nextWaveText.text = "";
+            return;
         }
         countdown -= Time.deltaTime;
+        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        nextWaveText.text = string.Format("Next in: {0:00.00}", countdown);
     }
     IEnumerator SpawnWave()
     {
@@ -58,7 +55,6 @@ public class WaveSpawner : MonoBehaviour
     {
         Quaternion rotation = Quaternion.Euler(0, 90, 0);
         Instantiate(enemy, spawnPoint.position, rotation);
-        enemeiesAlive++;
     }
  
  void DestroyAllEnemies(){

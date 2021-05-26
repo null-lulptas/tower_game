@@ -37,6 +37,7 @@ public class Tile_Location : MonoBehaviour
 
     public void Setup(Location gridPos, Vector3 worldPosition)
     {
+        IsEmpty = true;
         this.Position = gridPos;
         transform.position = worldPosition;
 
@@ -47,9 +48,12 @@ public class Tile_Location : MonoBehaviour
     private void OnMouseOver()
     {
         if (Master.Instance.Button != null)
-        {            
-            if (Input.GetMouseButtonDown(0))
-                PlaceTower();
+        {
+            if (IsEmpty)
+            {
+                if (Input.GetMouseButtonDown(0))
+                    PlaceTower();
+            }
         }
         else if(!EventSystem.current.IsPointerOverGameObject() 
             && Master.Instance.Button == null
@@ -68,12 +72,12 @@ public class Tile_Location : MonoBehaviour
 
     private void PlaceTower()
     {
-        if (PlayerStats.money < 3) return;
+        if (PlayerStats.money < 4) return;
         GameObject tower = (GameObject)Instantiate(Master.Instance.Button.TowerPrefab, transform.position, Quaternion.identity);
-
+        IsEmpty = false;
         tower.transform.SetParent(transform);
         this.myTower = tower.transform.GetComponent<Tower>();
         Master.Instance.TowerBuy();
-        PlayerStats.money = PlayerStats.money - 3;
+        PlayerStats.money = PlayerStats.money - 4;
     }
 }

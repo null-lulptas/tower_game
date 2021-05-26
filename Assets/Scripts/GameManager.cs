@@ -35,5 +35,6 @@ public class GameManager : MonoBehaviour
     {
         GameEnded = true;
         gamewonui.SetActive(true);
+        Time.timeScale = 0f;       
     }
 }
