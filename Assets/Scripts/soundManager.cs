@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class soundManager : Singleton<soundManager>
 {
 
     public AudioSource music;
-
     public Slider musicSlider;
-
     public AudioSource over;
+    public AudioMixer mixer;
     // Start is called before the first frame update
     void Start()
     {
-        LoadVolume();
         musicSlider.value = music.volume;
-        over.volume = musicSlider.value; ;
+        over.volume = musicSlider.value;
     }
 
     // Update is called once per frame
@@ -25,17 +24,10 @@ public class soundManager : Singleton<soundManager>
         
     }
 
-    public void UpdateVolume()
-    {
-        music.volume = musicSlider.value;
-        over.volume = musicSlider.value; ;
-
-        PlayerPrefs.SetFloat("MUSIC", musicSlider.value);        
-    }
-
-    public void LoadVolume()
-    {
-        music.volume = PlayerPrefs.GetFloat("MUSIC", 1f);
+    public void SetVolume(float volume)
+    {        
+        mixer.SetFloat("volume",volume);
+        PlayerPrefs.SetFloat("volume", volume);
     }
 
     public void PlayGameOver()

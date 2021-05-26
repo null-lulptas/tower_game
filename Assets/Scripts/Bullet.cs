@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class Bullet : MonoBehaviour
     public int damage = 50;
     public float explosionradius = 0f;
     public GameObject ImpactEffect;
-    public AudioSource bulletImpact;
     public void Seek(Transform _target)
     {
         target = _target;
@@ -16,7 +16,6 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletImpact = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,12 +51,7 @@ public class Bullet : MonoBehaviour
         else 
         {
             Damage(target);
-            bulletImpact.Play();
         }
-
-        //Damage(target);
-        //bulletImpact.Play();
-        //SoundManagerScript.PlaySound("BulletImpactSound");
         Destroy(gameObject);
     }
 
@@ -67,7 +61,6 @@ public class Bullet : MonoBehaviour
 
         if (e != null)
             e.TakeDamage(damage);
-           // Debug.Log("damage: " + damage);
     }
 
     void Explode()

@@ -72,12 +72,12 @@ public class Tile_Location : MonoBehaviour
 
     private void PlaceTower()
     {
-        if (PlayerStats.money < 4) return;
+        if (PlayerStats.money < 8) return;
         GameObject tower = (GameObject)Instantiate(Master.Instance.Button.TowerPrefab, transform.position, Quaternion.identity);
         IsEmpty = false;
         tower.transform.SetParent(transform);
         this.myTower = tower.transform.GetComponent<Tower>();
         Master.Instance.TowerBuy();
-        PlayerStats.money = PlayerStats.money - 4;
+        PlayerStats.money = PlayerStats.money - 8;
     }
 }
